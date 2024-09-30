@@ -32,8 +32,16 @@ export const Generator: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ marginTop: '20px' }}>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Container maxWidth="md" sx={{ marginTop: '80px' }}>
+      <Typography 
+        variant="h4" 
+        align="center" 
+        gutterBottom 
+        className="header"
+        sx={{
+          fontWeight: 500
+        }}
+      >
         Meme Generator
       </Typography>
 
@@ -93,7 +101,6 @@ export const Generator: React.FC = () => {
               variant="outlined"
             />
           </Box>
-
           {/* Button Group */}
           <Box display="flex" justifyContent="center" gap={2} mt={3}>
             <Button
