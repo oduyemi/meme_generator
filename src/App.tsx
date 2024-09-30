@@ -4,7 +4,7 @@ import { Generator } from "./components/Generator";
 
 
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <Container>
       <Generator />

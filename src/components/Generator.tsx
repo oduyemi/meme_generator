@@ -27,8 +27,12 @@ export const Generator: React.FC = () => {
     setBottomText('');
   };
 
+  const handleRefreshPage = () => {
+    window.location.reload();
+  };
+
   return (
-    <Box textAlign="center">
+    <Box textAlign="center" sx={{ marginTop: '80px' }}>
       <Typography variant="h4" gutterBottom>Meme Generator</Typography>
 
       {selectedMeme ? (
@@ -49,7 +53,7 @@ export const Generator: React.FC = () => {
                 color: 'white',
                 fontSize: '1.5em',
                 fontWeight: 'bold',
-                textShadow: '2px 2px 4px black'
+                textShadow: '2px 2px 4px black',
               }}
             >
               {topText}
@@ -63,7 +67,7 @@ export const Generator: React.FC = () => {
                 color: 'white',
                 fontSize: '1.5em',
                 fontWeight: 'bold',
-                textShadow: '2px 2px 4px black'
+                textShadow: '2px 2px 4px black',
               }}
             >
               {bottomText}
@@ -85,14 +89,22 @@ export const Generator: React.FC = () => {
               style={{ marginTop: '1em' }}
             />
           </Box>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setSelectedMeme(null)}
-            style={{ marginTop: '2em' }}
-          >
-            Select Another Meme
-          </Button>
+          <Box display="flex" justifyContent="center" gap={2} mt={3}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setSelectedMeme(null)}
+            >
+              Choose Another Meme
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={handleRefreshPage}
+            >
+              Go Back 
+            </Button>
+          </Box>
         </Box>
       ) : (
         <Box>
@@ -114,5 +126,3 @@ export const Generator: React.FC = () => {
     </Box>
   );
 };
-
-
