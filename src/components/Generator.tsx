@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, Typography } from '@mui/material';
+import { TextField, Button, Box, Typography, Container, Grid, Paper } from '@mui/material';
 
 interface Meme {
   id: string;
@@ -32,17 +32,19 @@ export const Generator: React.FC = () => {
   };
 
   return (
-    <Box textAlign="center" sx={{ marginTop: '80px' }}>
-      <Typography variant="h4" gutterBottom>Meme Generator</Typography>
+    <Container maxWidth="md" sx={{ marginTop: '20px' }}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Meme Generator
+      </Typography>
 
       {selectedMeme ? (
-        <Box>
-          <Box position="relative" display="inline-block">
+        <Paper elevation={3} sx={{ padding: '16px', textAlign: 'center' }}>
+          <Box position="relative" display="inline-block" mb={2}>
             <img
               src={selectedMeme.url}
               alt={selectedMeme.name}
-              width="300"
-              style={{ position: 'relative' }}
+              width="100%"
+              style={{ maxWidth: '400px', borderRadius: '8px' }}
             />
             <Typography
               style={{
@@ -80,49 +82,54 @@ export const Generator: React.FC = () => {
               value={topText}
               onChange={(e) => setTopText(e.target.value)}
               fullWidth
+              variant="outlined"
+              sx={{ mb: 2 }}
             />
             <TextField
               label="Bottom Text"
               value={bottomText}
               onChange={(e) => setBottomText(e.target.value)}
               fullWidth
-              style={{ marginTop: '1em' }}
+              variant="outlined"
             />
           </Box>
+
+          {/* Button Group */}
           <Box display="flex" justifyContent="center" gap={2} mt={3}>
             <Button
               variant="contained"
               color="primary"
               onClick={() => setSelectedMeme(null)}
             >
-              Choose Another Meme
+              Select Another Meme
             </Button>
             <Button
               variant="outlined"
               color="secondary"
               onClick={handleRefreshPage}
             >
-              Go Back 
+              Back to Homepage
             </Button>
           </Box>
-        </Box>
+        </Paper>
       ) : (
-        <Box>
+        <Paper elevation={3} sx={{ padding: '16px', textAlign: 'center' }}>
           <Typography variant="h6" gutterBottom>Select a Meme Template</Typography>
-          <Box display="flex" flexWrap="wrap" justifyContent="center">
+          <Grid container spacing={2} justifyContent="center">
             {memes.slice(0, 10).map((meme) => (
-              <img
-                key={meme.id}
-                src={meme.url}
-                alt={meme.name}
-                width="150"
-                style={{ margin: '10px', cursor: 'pointer' }}
-                onClick={() => handleSelectMeme(meme)}
-              />
+              <Grid item key={meme.id}>
+                <img
+                  src={meme.url}
+                  alt={meme.name}
+                  width="150"
+                  style={{ borderRadius: '8px', cursor: 'pointer' }}
+                  onClick={() => handleSelectMeme(meme)}
+                />
+              </Grid>
             ))}
-          </Box>
-        </Box>
+          </Grid>
+        </Paper>
       )}
-    </Box>
+    </Container>
   );
 };
