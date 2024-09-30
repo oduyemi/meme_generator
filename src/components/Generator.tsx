@@ -105,7 +105,7 @@ export const Generator: React.FC = () => {
             </Button>
             <Button
               variant="outlined"
-              color="secondary"
+              color="primary"
               onClick={handleRefreshPage}
             >
               Back to Homepage
